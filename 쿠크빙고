@@ -1,0 +1,128 @@
+import numpy as np
+
+Bingo = np.array([[False]*5]*5)
+Bingo[0, 3] = True
+Bingo[1, 1] = True
+dx = [0, 1, -1, 0, 0]
+dy = [0, 0, 0, 1, -1]
+def select(BINGO, x, y):
+  for i in range(len(BINGO)):
+    colBingo = []
+    rowBingo = []
+    diaBingo = []
+
+    nx = x + dx[i]
+    ny = y + dy[i]
+    if nx >= 0 and ny >= 0 and nx <= 4 and ny <= 4:
+      if BINGO[nx, ny] == False:
+        BINGO[nx, ny] = True
+
+      else:
+        BINGO[nx, ny] = False
+        for j in range(len(dx)):
+          if BINGO[nx, j] == True:
+            colBingo.append(True)
+
+          if BINGO[j, ny] == True:
+            rowBingo.append(True)
+
+          if BINGO[j, j] == True:
+            if nx == j and ny == j:
+              diaBingo.append(True)
+      
+        if colBingo == [True]*4 or rowBingo == [True]*4 or diaBingo == [True]*4:
+          BINGO[nx, ny] = True
+
+Bingo = np.array([[False]*5]*5)
+Bingo[0, 3] = True
+Bingo[1, 1] = True
+print(Bingo)
+
+
+countlist = []
+bingolist = []
+numlist = []
+
+for i in range(5):
+  for j in range(5):
+    naljibreak1 = True
+    for k in range(5):
+      if naljibreak1 == False:
+        break
+      for l in range(5):
+        naljibreak2 = True
+        for m in range(5):
+          if naljibreak2 == False:
+            break
+          naljibreak = True
+          for n in range(5):
+            if naljibreak == False:
+              break
+            copyBingo = Bingo.copy()
+
+            if copyBingo[i, j] == True:
+              naljibreak1 = False
+            select(copyBingo, i, j)
+
+            if copyBingo[k, l] == True:
+              naljibreak2 = False
+            select(copyBingo, k, l)
+
+            if copyBingo[m, n] == True:
+              break
+            select(copyBingo, m, n)
+
+            for x in range(5):
+              count = 0
+              colcopy = []
+              rowcopy = []
+              diacopy = []
+              mdiacopy = []
+              for y in range(5):
+                if copyBingo[x, y] == True:
+                  colcopy.append(True)
+
+                if copyBingo[y, x] == True:
+                  rowcopy.append(True)
+
+                if copyBingo[y, y] == True:
+                    diacopy.append(True)
+
+                if copyBingo[-y, -y] == True:
+                    mdiacopy.append(True)
+            
+              if colcopy == [True]*5 or rowcopy == [True]*5 or diacopy == [True]*5 or mdiacopy == [True]*5:
+                naljibreak = False
+                wBingo = []
+                dBingo = []
+                for x1 in range(5):
+                  for y1 in range(5):
+                    if copyBingo[x1, y1] == True:
+                      count += 1
+                  # 여기부분 해결
+                  if copyBingo[x1, 0] == True:
+                    wBingo.append(True)
+                  if copyBingo[4, x1] == True:
+                    dBingo.append(True)
+                if wBingo == [True]*5 or dBingo == [True]*5:
+                  countlist.append(count)
+                  bingolist.append(copyBingo)
+                  numlist.append([i,j,k,l,m,n])
+                break
+              else:
+                naljibreak = True
+                for h in range(5):
+                  m1 = m + dx[h]
+                  n1 = n + dy[h]
+                  if m1 >= 0 and n1 >= 0 and m1 <= 4 and n1 <= 4:
+                    if copyBingo[m1, n1] == False:
+                      copyBingo[m1, n1] = True
+                    else:
+                      copyBingo[m1, n1] = False
+
+
+for i in range(3):
+  m = countlist.index(min(countlist))
+  print("\n", numlist[m],"\n",bingolist[m])
+  del countlist[m]
+  del bingolist[m]
