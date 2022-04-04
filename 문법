@@ -1,0 +1,8 @@
+# sep: 값 사이의 구분 기호 기본값 ''
+print("Hello", "World")
+
+print("Hello", "World", sep = "->")
+
+# %s, 문자열(String). %c, 문자 1개(character). %d, 정수(Integer). %f, 부동소수(floating-point). %o, 8진수. %x, 16진수
+
+# 유니코드 ord 문자를 유니코드로 변경
