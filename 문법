@@ -8,6 +8,8 @@ print("Hello", "World", sep = "->")
 # 유니코드 
 # ord() 문자를 유니코드로 변경
 
+# 16진수 값 
+# n = int(input(), 16)
 
 # 소수점 n(자연수)번째 자리까지 나타내기
 # format(f, ".nf")
