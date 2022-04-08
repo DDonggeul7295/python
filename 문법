@@ -13,3 +13,10 @@ print("Hello", "World", sep = "->")
 
 # 소수점 n(자연수)번째 자리까지 나타내기
 # format(f, ".nf")
+
+#최소공배수
+# a, b, c = map(int, input().split())
+# d = 1
+# while d%a!=0 or d%b!=0 or d%c!=0:
+#     d += 1
+# print(d)
