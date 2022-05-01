@@ -20,3 +20,6 @@ print("Hello", "World", sep = "->")
 # while d%a!=0 or d%b!=0 or d%c!=0:
 #     d += 1
 # print(d)
+
+# 리스트 정렬 기준
+# _.sort(key=lambda x: (x[n],x[n1],x[n2]....))
