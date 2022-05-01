@@ -23,3 +23,6 @@ print("Hello", "World", sep = "->")
 
 # 리스트 정렬 기준
 # _.sort(key=lambda x: (x[n],x[n1],x[n2]....))
+
+# 리스트형태로 가져오기
+# list(map(int, input().split()))
